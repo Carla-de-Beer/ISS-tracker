@@ -1,0 +1,26 @@
+body {
+    margin: 30px;
+    padding: 0;
+    overflow: hidden;
+}
+
+h1 {
+    color: #5a5a5a;
+    text-align: center;
+    font-size: 17px;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+}
+
+p {
+    top: 0;
+    text-align: center;
+    color: #5a5a5a;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+#issMap {
+    margin-top: 25px;
+    height: 575px;
+    width: 900px;
+}
