@@ -15,5 +15,5 @@ Resources:
 * The website can be viewed via the following URL: https://carla-de-beer.github.io/ISS-Tracker/
 
 <p align="center">
-  <img src="images/screenShot-01"/>
+  <img src="images/screenShot-01.png"/>
 </p>
