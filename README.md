@@ -1,6 +1,6 @@
 # ISS-Tracker
 
-A real-time 2D tracker for the International Space Station.
+A real-time 2D tracker for the International Space Station. The tracker shows the position of the ISS, some additional statistics, as well as an indication as to whether the satellite is `visible`, `eclipsed` or observable in `daylight`.
 
 Based on Daniel Shiffman's Coding Train video example: https://www.youtube.com/watch?v=uxf0--uiX0I
 
@@ -16,4 +16,16 @@ Resources:
 
 <p align="center">
   <img src="images/screenShot-01.png"/>
+</p>
+<p align="center">
+    <img src="images/screenShot-02.png"/>
+</p>
+
+NOTE: There are times when the API can't respond due to too many requests. In this case, and error message is shown inside the tooltip.
+
+<p align="center">
+    <img src="images/screenShot-04.png" width="350px"/>
+</p>
+<p align="center">
+    <img src="images/screenShot-03.png"/>
 </p>
