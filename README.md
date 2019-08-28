@@ -19,6 +19,7 @@ Resources:
 * The website can be viewed via the following URL: https://carla-de-beer.github.io/ISS-Tracker/
 
 <p align="center">
+  <img src="images/screenShot-04.png"/>
   <img src="images/screenShot-01.png"/>
   <img src="images/screenShot-02.png"/>
 </p>
@@ -26,7 +27,7 @@ Resources:
 NOTE: There are times when the API can't respond due to too many requests. In this case, and error message is shown inside the tooltip.
 
 <p align="center">
-    <img src="images/screenShot-04.png" width="450px"/>
+    <img src="images/screenShot-05.png" width="450px"/>
 </p>
 <p align="center">
     <img src="images/screenShot-03.png"/>
