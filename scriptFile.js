@@ -30,7 +30,7 @@ setTimeout(() => {
 }, 2000);
 
 marker
-  .bindTooltip("<p><strong>ISS id:</strong> 25544</p>", {
+  .bindTooltip("<p>Loading data ...</p>", {
     opacity: 0.8,
     offset: L.point(0, 0)
   })
@@ -69,7 +69,9 @@ async function getISS() {
     const latText = `<strong>latitude</strong>: ${latitude.toFixed(3)}°`;
     const lonText = `<strong>longitude</strong>: ${longitude.toFixed(3)}°`;
     const altText = `<strong>altitude</strong>: ${altitude.toFixed(3)} km`;
-    const velText = `<strong>velocity</strong>: ${convertToCommaString(parseInt(velocity))} km/h`;
+    const velText = `<strong>velocity</strong>: ${convertToCommaString(
+      parseInt(velocity)
+    )} km/h`;
     const dateText = `${formatDate(date)}`;
     let visibilityIcon = "";
 
@@ -83,20 +85,20 @@ async function getISS() {
 
     marker.setTooltipContent(
       "<p>" +
-      visibilityIcon +
-      "</br>" +
-      issId +
-      "</br>" +
-      latText +
-      "</br>" +
-      lonText +
-      "</br>" +
-      altText +
-      "</br>" +
-      velText +
-      "</br></br>" +
-      dateText +
-      "</p>"
+        visibilityIcon +
+        "</br>" +
+        issId +
+        "</br>" +
+        latText +
+        "</br>" +
+        lonText +
+        "</br>" +
+        altText +
+        "</br>" +
+        velText +
+        "</br></br>" +
+        dateText +
+        "</p>"
     );
 
     latlngs.push(latLng);
@@ -107,7 +109,9 @@ async function getISS() {
       }).addTo(worldMap);
     }
   } catch (error) {
-    marker.setTooltipContent("<p>There are too many data requests at present.</br>Try again later.</p>");
+    marker.setTooltipContent(
+      '<p><span style="font-size: 20px">&#9201;</span></br>There are too many data requests at present.</br>Try again later.</p>'
+    );
   }
 }
 
@@ -227,16 +231,16 @@ function formatDate(date) {
 }
 
 function convertToCommaString(value) {
-  String.prototype.splice = function (idx, rem, str) {
+  String.prototype.splice = function(idx, rem, str) {
     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
   };
 
   let resString = value.toString();
   if (value >= 1000) {
     if (value >= 1000 && value < 10000) {
-      resString = resString.splice(1, 0, ',');
+      resString = resString.splice(1, 0, ",");
     } else if (value >= 10000) {
-      resString = resString.splice(2, 0, ',');
+      resString = resString.splice(2, 0, ",");
     }
   }
   return resString;
