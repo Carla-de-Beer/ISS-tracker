@@ -9,12 +9,12 @@
 // ISS image: https://commons.wikimedia.org/wiki/File:International_Space_Station.svg
 
 let latlngs = [];
-const zoom = 3;
+const zoom = 4;
 let firstTime = true;
-const url = "https://api.wheretheiss.at/v1/satellites/25544/";
+const url = 'https://api.wheretheiss.at/v1/satellites/25544/';
 const attribution =
   'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
-const tile = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const tile = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 const worldMap = drawMap();
 const marker = drawMapMarker();
@@ -29,7 +29,7 @@ setTimeout(() => {
   marker.closeTooltip();
 }, 2000);
 
-marker.bindTooltip("<p><strong>ISS id:</strong> 25544</p>", {
+marker.bindTooltip('<p><strong>ISS id:</strong> 25544</p>', {
   opacity: 0.8,
   offset: L.point(0, 0)
 }).openTooltip();
@@ -56,7 +56,7 @@ async function getISS() {
 
   marker.setLatLng(latLng);
   circleMarker.setLatLng(latLng);
-  circleMarker.setRadius(footprint * 0.01);
+  circleMarker.setRadius(footprint * 0.01 * 2);
 
   const date = new Date(0);
   date.setUTCSeconds(timestamp);
@@ -64,30 +64,30 @@ async function getISS() {
   const issId = `<strong>ISS id</strong>: ${id}`;
   const latText = `<strong>latitude</strong>: ${latitude.toFixed(3)}°`;
   const lonText = `<strong>longitude</strong>: ${longitude.toFixed(3)}°`;
-  const altText = `<strong>altitude</strong>: ${altitude.toFixed(3)}km`;
+  const altText = `<strong>altitude</strong>: ${altitude.toFixed(3)} km`;
   const dateText = `${formatDate(date)}`;
-  let visibilityIcon = "";
+  let visibilityIcon = '';
 
-  if (visibility.toLowerCase() == "eclipsed") {
-    visibilityIcon = "<strong>visibility: </strong><span style=\"font-size: 18px\">&#127770;</span>";
-  } else if (visibility.toLowerCase() == "daylight") {
-    visibilityIcon = "<strong>visibility: </strong><span style=\"font-size: 18px\">&#127773;</span>";
+  if (visibility.toLowerCase() === 'eclipsed') {
+    visibilityIcon = '<span style="font-size: 20px">&#127770;</span>';
+  } else if (visibility.toLowerCase() === 'daylight') {
+    visibilityIcon = '<span style="font-size: 20px">&#127773;</span>';
   }
 
-  marker.setTooltipContent("<p>" + issId + "</br>" + latText + "</br>" + lonText + "</br>" +
-    altText + "</br>" + visibilityIcon + "</br>" + "</br>" + dateText + "</p>");
+  marker.setTooltipContent('<p>' + visibilityIcon + '</br>' + issId + '</br>' +
+    latText + '</br>' + lonText + '</br>' + altText + '</br></br>' + dateText + '</p>');
 
   latlngs.push(latLng);
   if (latlngs.length > 1) {
     L.polyline(latlngs, {
-      color: "#ff4040",
+      color: '#ff4040',
       weight: 2
     }).addTo(worldMap);
   }
 }
 
 function drawMap() {
-  const worldMap = L.map("issMap").setView([0, 0], zoom);
+  const worldMap = L.map('issMap').setView([0, 0], zoom);
   L.tileLayer(tile, {
     maxZoom: 25,
     minZoom: 1.8,
@@ -97,13 +97,31 @@ function drawMap() {
 }
 
 function centreMap() {
-  let mapDiv = document.getElementById("issMap");
-  mapDiv.style.left = window.innerWidth / 2 - 900 / 2 + "px";
+  let width = 1050;
+  let mapDiv = document.getElementById('issMap');
+
+  if (navigator.userAgent.match(/iPhone|iPad/i) !== null) {
+    if (navigator.userAgent.match(/iPhone/i) !== null) {
+      mapDiv.style.width = window.innerWidth - 60 + 'px';
+      mapDiv.style.height = window.innerHeight - 80 + 'px';
+      mapDiv.style.marginTop = '15px';
+    } else {
+      mapDiv.style.marginTop = '35px';
+      mapDiv.style.width = window.innerWidth - 60 + 'px';
+      if (window.innerHeight < window.innerWidth) {
+        mapDiv.style.height = window.innerHeight - 130 + 'px';
+      }
+    }
+  } else {
+    mapDiv.style.width = width + 'px';
+    mapDiv.style.left = (window.innerWidth - width - 60) * 0.5 + 'px';
+    mapDiv.style.marginTop = '35px';
+  }
 }
 
 function drawMapShadow() {
   const shadowLine = L.terminator({
-    fillOpacity: "0.12"
+    fillOpacity: '0.12'
   });
   shadowLine.addTo(worldMap);
   setInterval(() => {
@@ -119,7 +137,7 @@ function drawMapShadow() {
 
 function drawMapMarker() {
   const issIcon = L.icon({
-    iconUrl: "resources/iss200.png",
+    iconUrl: 'resources/iss200.png',
     iconSize: [50, 32],
     iconAnchor: [25, 16]
   });
@@ -131,19 +149,19 @@ function drawMapMarker() {
 
 function drawCircleMarker() {
   return L.circleMarker([0, 0], {
-    radius: 12,
+    radius: 90,
     stroke: true,
-    color: "#3388ff",
+    color: '#3388ff',
     weight: 1
   }).addTo(worldMap);
 }
 
 function formatDate(date) {
   const monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
+    'January', 'February', 'March',
+    'April', 'May', 'June', 'July',
+    'August', 'September', 'October',
+    'November', 'December'
   ];
 
   const day = date.getDate();
@@ -153,6 +171,6 @@ function formatDate(date) {
     timeZoneName: 'short'
   }).split(' ')[2]
 
-  return "<p>" + day + " " + monthNames[monthIndex] + " " + year + " " + "</br>" +
-    date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + " " + zone + "</p>";
+  return '<span style="font-size: 12px">' + day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + '</br>' +
+    date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + zone + '</span>';
 }
