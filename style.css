@@ -20,6 +20,15 @@ p {
     font-size: 13px;
 }
 
+#subHeader2 {
+    top: 0;
+    margin: 12px;
+    font-size: 10px;
+    text-align: center;
+    color: #5a5a5a;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+}
+
 #issMap {
     height: 575px;
 }

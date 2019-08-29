@@ -60,7 +60,7 @@ async function getISS() {
 
     marker.setLatLng(latLng);
     footprintMarker.setLatLng(latLng);
-    footprintMarker.setRadius(footprint * 1000);
+    footprintMarker.setRadius(footprint * 500);
 
     const date = new Date(0);
     date.setUTCSeconds(timestamp);
@@ -132,19 +132,24 @@ function centreMap() {
   if (navigator.userAgent.match(/iPhone|iPad/i) !== null) {
     if (navigator.userAgent.match(/iPhone/i) !== null) {
       mapDiv.style.width = window.innerWidth - 60 + "px";
-      mapDiv.style.height = window.innerHeight - 80 + "px";
+      mapDiv.style.height = window.innerHeight - 150 + "px";
       mapDiv.style.marginTop = "15px";
-    } else {
-      mapDiv.style.marginTop = "35px";
-      mapDiv.style.width = window.innerWidth - 60 + "px";
       if (window.innerHeight < window.innerWidth) {
         mapDiv.style.height = window.innerHeight - 130 + "px";
+      }
+    } else {
+      mapDiv.style.marginTop = "25px";
+      mapDiv.style.width = window.innerWidth - 60 + "px";
+      if (window.innerHeight < window.innerWidth) {
+        mapDiv.style.height = window.innerHeight - 145 + "px";
+      } else {
+        mapDiv.style.height = window.innerHeight - 150 + "px";
       }
     }
   } else {
     mapDiv.style.width = width + "px";
     mapDiv.style.left = (window.innerWidth - width - 60) * 0.5 + "px";
-    mapDiv.style.marginTop = "35px";
+    mapDiv.style.marginTop = "25px";
   }
 }
 
@@ -178,7 +183,7 @@ function drawMapMarker() {
 
 function drawFootprintMarker() {
   return L.circle([0, 0], {
-    radius: 4500 * 1000,
+    radius: 4500 * 500,
     stroke: true,
     color: "#3388ff",
     weight: 1
