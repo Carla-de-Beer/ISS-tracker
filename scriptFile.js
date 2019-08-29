@@ -18,7 +18,7 @@ const tile = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 const worldMap = drawMap();
 const marker = drawMapMarker();
-const circleMarker = drawCircleMarker();
+const footprintMarker = drawFootprintMarker();
 
 centreMap();
 drawMapShadow();
@@ -59,8 +59,8 @@ async function getISS() {
     }
 
     marker.setLatLng(latLng);
-    circleMarker.setLatLng(latLng);
-    circleMarker.setRadius(footprint * 0.01 * 2);
+    footprintMarker.setLatLng(latLng);
+    footprintMarker.setRadius(footprint * 1000);
 
     const date = new Date(0);
     date.setUTCSeconds(timestamp);
@@ -176,9 +176,9 @@ function drawMapMarker() {
   }).addTo(worldMap);
 }
 
-function drawCircleMarker() {
-  return L.circleMarker([0, 0], {
-    radius: 90,
+function drawFootprintMarker() {
+  return L.circle([0, 0], {
+    radius: 4500 * 1000,
     stroke: true,
     color: "#3388ff",
     weight: 1
