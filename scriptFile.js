@@ -65,7 +65,7 @@ async function getISS() {
     const date = new Date(0);
     date.setUTCSeconds(timestamp);
 
-    const issId = `<strong>ISS id</strong>: ${id}`;
+    const issId = `<strong>NORAD ID</strong>: ${id}`;
     const latText = `<strong>latitude</strong>: ${latitude.toFixed(3)}°`;
     const lonText = `<strong>longitude</strong>: ${longitude.toFixed(3)}°`;
     const altText = `<strong>altitude</strong>: ${altitude.toFixed(3)} km`;
@@ -85,20 +85,20 @@ async function getISS() {
 
     marker.setTooltipContent(
       "<p>" +
-        visibilityIcon +
-        "</br>" +
-        issId +
-        "</br>" +
-        latText +
-        "</br>" +
-        lonText +
-        "</br>" +
-        altText +
-        "</br>" +
-        velText +
-        "</br></br>" +
-        dateText +
-        "</p>"
+      visibilityIcon +
+      "</br>" +
+      issId +
+      "</br>" +
+      latText +
+      "</br>" +
+      lonText +
+      "</br>" +
+      altText +
+      "</br>" +
+      velText +
+      "</br></br>" +
+      dateText +
+      "</p>"
     );
 
     latlngs.push(latLng);
@@ -110,7 +110,7 @@ async function getISS() {
     }
   } catch (error) {
     marker.setTooltipContent(
-      '<p><span style="font-size: 20px">&#9201;</span></br>There are too many data requests at present.</br>Try again later.</p>'
+      '<p><span style="font-size: 20px">&#9201;</span></br>There are too many data requests at present.</br>Please try again later.</p>'
     );
   }
 }
@@ -236,7 +236,7 @@ function formatDate(date) {
 }
 
 function convertToCommaString(value) {
-  String.prototype.splice = function(idx, rem, str) {
+  String.prototype.splice = function (idx, rem, str) {
     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
   };
 
