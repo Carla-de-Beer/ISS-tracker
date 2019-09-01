@@ -28,7 +28,7 @@ The website can be viewed via the following URL: https://carla-de-beer.github.io
   <img src="images/screenShot-02.png"/>
 </p>
 
-NOTE: The API is rate-limited, meaning that there are times when the API can't respond due to too many requests. In this case, and error message is shown inside the tooltip.
+NOTE: The API is rate-limited, meaning that there are times when it can't respond due to too many requests. In this case, an error message is shown inside the tooltip.
 
 <p align="center">
     <img src="images/screenShot-05.png" width="450px"/>
